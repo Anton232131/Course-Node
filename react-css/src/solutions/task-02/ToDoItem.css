@@ -1,0 +1,7 @@
+.completed_todo {
+  color: greenyellow;
+}
+
+.uncompleted_todo {
+  color: red;
+}
