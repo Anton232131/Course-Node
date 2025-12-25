@@ -1,6 +1,7 @@
 import React from "react";
 import { TodoItemProps } from "../../types";
 import "./ToDoItem.css";
+import ItemToDo from "../../component/ItemToDo";
 
 /**
  * Task 2: ToDoItem Component
@@ -50,15 +51,7 @@ export const ToDoItem: React.FC<TodoItemProps> = ({ todo }) => {
   return (
     <div>
       <h4>ToDo Item Component</h4>
-      <p>
-        {todo.title} (
-        <span
-          className={todo.completed ? "completed_todo" : "uncompleted_todo"}
-        >
-          {todo.completed ? "completed" : "not completed"}
-        </span>
-        )
-      </p>
+      <ItemToDo todo={todo} />
     </div>
   );
 };

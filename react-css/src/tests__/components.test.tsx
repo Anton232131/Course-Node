@@ -5,6 +5,8 @@ import { AddToDo } from "../solutions/task-03/AddToDo";
 import { CompleteToDoList } from "../solutions/task-04/CompleteToDoList";
 import { FilteredToDoList } from "../solutions/task-05/FilteredToDoList";
 import { ActiveCount } from "../solutions/task-06/ActiveCount";
+import { StyledToDoItem } from "../solutions/task-07/StyledToDoItem";
+import { FetchToDos } from "../solutions/task-08/FetchToDos";
 
 // 1. ToDoList
 test("ToDoList renders todo titles", () => {
@@ -53,4 +55,17 @@ test("ActiveCount shows number of active todos", () => {
     />
   );
   expect(screen.getByText(/1 active/i)).toBeInTheDocument();
+});
+
+// 7. StyledToDoItem
+test("StyledToDoItem renders todo item", () => {
+  render(<StyledToDoItem todo={{ id: 1, title: "Test", completed: true }} />);
+  expect(screen.getByText("Test")).toBeInTheDocument();
+  expect(screen.getByText(/completed/i)).toBeInTheDocument();
+});
+
+// 8. FetchToDos
+test("FetchToDos renders with loading state", () => {
+  render(<FetchToDos />);
+  expect(screen.getByText(/loading/i)).toBeInTheDocument();
 });
