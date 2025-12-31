@@ -135,7 +135,7 @@ export const FetchToDos: React.FC = () => {
               marginTop: "50px",
             }}
           >
-            <Loader />
+            loading..
           </div>
         ) : error ? (
           <div style={{ textAlign: "center" }}>
