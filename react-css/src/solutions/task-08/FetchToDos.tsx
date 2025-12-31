@@ -99,7 +99,8 @@ export const FetchToDos: React.FC = () => {
       try {
         const limit = 10;
         const response = await fetch(
-          `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
+          // `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
+          `https://jsonplaceholder.typicode.com/todo`
         );
         const data = await response.json();
         setTodos(data);
@@ -136,6 +137,11 @@ export const FetchToDos: React.FC = () => {
             }}
           >
             <Loader />
+          </div>
+        ) : error ? (
+          <div style={{ textAlign: "center" }}>
+            <h2> Error </h2>
+            <p>{error}</p>
           </div>
         ) : (
           <ul>
