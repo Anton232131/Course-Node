@@ -99,8 +99,7 @@ export const FetchToDos: React.FC = () => {
       try {
         const limit = 10;
         const response = await fetch(
-          // `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
-          `https://jsonplaceholder.typicode.com/todo`
+          `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
         );
         const data = await response.json();
         setTodos(data);
