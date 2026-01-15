@@ -95,61 +95,46 @@ export const FetchToDos: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchTodo = async () => {
-      try {
-        const limit = 10;
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
-        );
-        const data = await response.json();
+    const limit = 5;
+    fetch(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`)
+      .then((res) => res.json())
+      .then((data) => {
         setTodos(data);
-      } catch (e) {
-        if (e instanceof Error) {
-          setError(e.message);
-        } else {
-          setError("Произошла неизвестная ошибка");
-        }
-      } finally {
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
-    const timer = setTimeout(() => {
-      fetchTodo();
-    }, 2000);
-
-    return () => {
-      clearTimeout(timer);
-    };
+      });
   }, []);
 
   return (
     <div>
       {/* TODO: Replace this with your implementation */}
       <h4>Fetch ToDos Component</h4>
-      <div>
-        {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "50px",
-            }}
-          >
-            loading..
-          </div>
-        ) : error ? (
-          <div style={{ textAlign: "center" }}>
-            <h2> Error </h2>
-            <p>{error}</p>
-          </div>
-        ) : (
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.id}>{todo.title}</li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {loading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "50px",
+          }}
+        >
+          loading..{" "}
+        </div>
+      ) : error ? (
+        <div style={{ textAlign: "center" }}>
+          <h2> Error </h2>
+          <p>{error}</p>
+        </div>
+      ) : (
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
