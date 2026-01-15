@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Todo } from "../../types";
+import styles from "./FetchToDo.module.css";
 import Loader from "../../component/Loader/Loader";
 
 /**
@@ -96,13 +97,18 @@ export const FetchToDos: React.FC = () => {
 
   useEffect(() => {
     const limit = 5;
-    fetch(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`)
-      .then((res) => res.json())
+    fetch(`https://jsonplaceholder.typicode.com/todoss?_limit=${limit}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
         setTodos(data);
       })
       .catch((err) => {
-        setError(err);
+        setError(err.message);
       })
       .finally(() => {
         setLoading(false);
@@ -114,17 +120,9 @@ export const FetchToDos: React.FC = () => {
       {/* TODO: Replace this with your implementation */}
       <h4>Fetch ToDos Component</h4>
       {loading ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "50px",
-          }}
-        >
-          loading..{" "}
-        </div>
+        <div className={styles.loading}>loading.. </div>
       ) : error ? (
-        <div style={{ textAlign: "center" }}>
+        <div className={styles.error}>
           <h2> Error </h2>
           <p>{error}</p>
         </div>
