@@ -13,6 +13,7 @@ import Task05 from "./pages/Task05";
 import Task06 from "./pages/Task06";
 import Task07 from "./pages/Task07";
 import Task08 from "./pages/Task08";
+import Task09 from "./pages/Task09";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/task-06" element={<Task06 />} />
           <Route path="/task-07" element={<Task07 />} />
           <Route path="/task-08" element={<Task08 />} />
+          <Route path="/task-09" element={<Task09 />} />
         </Routes>
       </div>
     </Router>
