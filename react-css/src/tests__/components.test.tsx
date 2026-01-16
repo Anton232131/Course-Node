@@ -7,6 +7,7 @@ import { FilteredToDoList } from "../solutions/task-05/FilteredToDoList";
 import { ActiveCount } from "../solutions/task-06/ActiveCount";
 import { StyledToDoItem } from "../solutions/task-07/StyledToDoItem";
 import { FetchToDos } from "../solutions/task-08/FetchToDos";
+import { Card } from "../solutions/task-09/Card";
 
 // 1. ToDoList
 test("ToDoList renders todo titles", () => {
@@ -68,4 +69,14 @@ test("StyledToDoItem renders todo item", () => {
 test("FetchToDos renders with loading state", () => {
   render(<FetchToDos />);
   expect(screen.getByText(/loading/i)).toBeInTheDocument();
+});
+
+// 9. Card
+test("Card renders children", () => {
+  render(
+    <Card>
+      <span>Content</span>
+    </Card>
+  );
+  expect(screen.getByText("Content")).toBeInTheDocument();
 });
