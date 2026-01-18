@@ -8,6 +8,7 @@ import { ActiveCount } from "../solutions/task-06/ActiveCount";
 import { StyledToDoItem } from "../solutions/task-07/StyledToDoItem";
 import { FetchToDos } from "../solutions/task-08/FetchToDos";
 import { Card } from "../solutions/task-09/Card";
+import { AddToDoForm } from "../solutions/task-10/AddToDoForm";
 
 // 1. ToDoList
 test("ToDoList renders todo titles", () => {
@@ -53,7 +54,7 @@ test("ActiveCount shows number of active todos", () => {
         { id: 1, title: "A", completed: false },
         { id: 2, title: "B", completed: true },
       ]}
-    />
+    />,
   );
   expect(screen.getByText(/1 active/i)).toBeInTheDocument();
 });
@@ -76,7 +77,14 @@ test("Card renders children", () => {
   render(
     <Card>
       <span>Content</span>
-    </Card>
+    </Card>,
   );
   expect(screen.getByText("Content")).toBeInTheDocument();
+});
+
+// 10. AddToDoForm
+test("AddToDoForm renders with form elements", () => {
+  render(<AddToDoForm />);
+  expect(screen.getByPlaceholderText(/add todo/i)).toBeInTheDocument();
+  expect(screen.getByText(/submit/i)).toBeInTheDocument();
 });

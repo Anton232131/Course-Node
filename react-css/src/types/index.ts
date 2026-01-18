@@ -15,3 +15,19 @@ export interface TodoItemProps {
 export interface ActiveCountProps {
   todos: Todo[];
 }
+
+export interface AddTodoFormProps {
+  onAdd: (title: string) => void;
+}
+
+export interface TodoListItem {
+  todo: Todo;
+  onComplete: (id: number) => void;
+  onRemove: (id: number) => void;
+}
+
+export interface TodoLists {
+  todos: Todo[];
+  onComplete: (id: number) => void;
+  onRemove: (id: number) => void;
+}
